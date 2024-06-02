@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Cargo.Data.Models.Automobile>
+
+@{
+    ViewData["Title"] = "AutomobileList";
+}
+
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/../images/hero_bg_1.jpg)" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+            <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+                <h1 class="text-white font-weight-light text-uppercase font-weight-bold">Лист с автомобили</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.Count() == 0)
+{
+    <h1 class="add-row" style="margin-bottom:100px;">Все още няма автомобили</h1>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-area="Ofis" asp-action="AutomobileList" asp-controller="Ofis" asp-route-sortOrder="@ViewData["NameSortParam"]">Име на модела</a>
+                </th>
+                <th>
+                    <a asp-area="Ofis" asp-action="AutomobileList" asp-controller="Ofis" asp-route-sortOrder="@ViewData["OfficeSortParam"]">Офис</a>
+                </th>
+                <th>
+                    <a asp-area="Ofis" asp-action="AutomobileList" asp-controller="Ofis" asp-route-sortOrder="@ViewData["KmSortParam"]">Километраж</a>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AutomobileModel.Manufacturer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Office.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Speedometer)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

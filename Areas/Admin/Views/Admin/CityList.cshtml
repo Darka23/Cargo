@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Cargo.Data.Models.City>
+
+@{
+    ViewData["Title"] = "Лист с градове";
+}
+
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/../images/hero_bg_1.jpg)" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+            <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+                <h1 class="text-white font-weight-light text-uppercase font-weight-bold">Лист с градове</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table class="table" style="margin-left:35%; width:35%;">
+    <thead>
+        <tr>
+            <th>
+                <a asp-area="Admin" asp-action="CityList" asp-controller="Admin" asp-route-sortOrder="@ViewData["NameSortParam"]">Име</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="font-size:24px;">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="EditCity" asp-route-id="@item.Id" class="btn btn-success">Редактирай</a> |
+                    @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                    <a asp-action="DeleteCity" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <a asp-action="AddCity" class="btn btn-primary" style="margin-left:20px; margin-top:20px;">Добави нов град</a>
+</table>

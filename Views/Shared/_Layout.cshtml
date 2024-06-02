@@ -1,0 +1,149 @@
+﻿@using Cargo.Data.Identity
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Cargo.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900|Display+Playfair:200,300,400,700">
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="~/fonts/flaticon/font/flaticon.css">
+
+
+
+    <link rel="stylesheet" href="~/css/aos.css">
+
+    <link rel="stylesheet" href="~/css/style.css">
+
+    <link href="https://www.shutterstock.com/image-vector/global-transportation-services-semi-truck-260nw-2041354670.jpg" rel="icon"/>
+</head>
+<body>
+
+    <div class="site-wrap">
+        <header class="site-navbar py-3" role="banner">
+
+            <div class="container">
+                <div class="row align-items-center">
+
+                    <div class="col-11 col-xl-2">
+                        <h1 class="mb-0"><a asp-area="" asp-controller="Home" asp-action="Index" class="text-white h2 mb-0">Cargo</a></h1>
+                    </div>
+                    <div class="col-12 col-md-10 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+
+                            <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                                <li><a asp-area="" asp-controller="Home" asp-action="About">За нас</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="Contacts">Контакти</a></li>
+                                @if(User.IsInRole("Office"))
+                                {
+                                <li><a asp-area="Ofis" asp-controller="Ofis" asp-action="AutomobileList">Автомобили</a></li>
+                                <li><a asp-area="Ofis" asp-controller="Ofis" asp-action="OrderList">Поръчки</a></li>
+                                }
+                                @if (User.IsInRole("Administrator"))
+                                {
+                                    <li><a asp-action="AdminPanel" asp-controller="Admin" asp-area="Admin">Админ Панел</a></li>
+                                }
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li>
+                                        <a>Здравейте, @User.Identity?.Name</a>
+                                    </li>
+                                    <li>
+                                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                            <button type="submit" class="nav-link btn btn-link">Излез</button>
+                                        </form>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a asp-area="Identity" asp-page="/Account/Register">Регистрирай се</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Identity" asp-page="/Account/Login">Влез</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="">
+            <main role="main" class="">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="add-row">
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h2 class="footer-heading mb-4">Бързи връзки</h2>
+                                <ul class="list-unstyled">
+                                    <li><a asp-area="" asp-controller="Home" asp-action="About">За нас</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Contacts">Свържи се с нас</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-5 mt-5 text-center">
+                    <div class="col-md-12">
+                        <div class="border-top pt-5">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/js/jquery-ui.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.stellar.min.js"></script>
+    <script src="~/js/jquery.countdown.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/js/aos.js"></script>
+
+    <script src="~/js/main.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

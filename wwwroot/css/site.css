@@ -1,0 +1,56 @@
+/*html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}*/
+
+#asniu {
+    background-image: url(/images/hero_bg_1.jpg);
+}
+
+.adminBtn {
+    background-color: #f89d13;
+    color: white;
+    height: 40px;
+    width: 250px;
+}
+
+.adminPanel {
+    margin-top:30px;
+    margin-bottom: 420px;
+}
+
+.adminOperations {
+    display: flex;
+    justify-content: center;
+}
+
+    .adminOperations a {
+        margin: 20px
+    }
+
+.adminHeading {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.add-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}

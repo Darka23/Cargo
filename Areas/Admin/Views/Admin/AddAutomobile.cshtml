@@ -1,0 +1,46 @@
+﻿@model Cargo.Data.Models.Automobile
+
+@{
+    ViewData["Title"] = "Добави автомобил";
+}
+
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/../images/hero_bg_1.jpg)" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+            <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+                <h1 class="text-white font-weight-light text-uppercase font-weight-bold">Добави автомобил</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="add-row">
+    <div class="col-md-4">
+        <form asp-action="AddAutomobile">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AutomobileModelId" class="control-label">Модел автомобил</label>
+                <select asp-for="AutomobileModelId" class ="form-control" asp-items="ViewBag.AutomobileModelId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeId" class="control-label">Офис</label>
+                <select asp-for="OfficeId" class ="form-control" asp-items="ViewBag.OfficeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Speedometer" class="control-label">Километраж</label>
+                <input asp-for="Speedometer" class="form-control" />
+                <span asp-validation-for="Speedometer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добави" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-action="AdminPanel" style="margin-left:10px;">Върни се в менюто</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
